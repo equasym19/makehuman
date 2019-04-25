@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Jonas Hauquier, Marc Flerackers, Thomas Larsson
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -291,7 +291,7 @@ class BVH():
         else:
             autoAxis = False
 
-        fp = io.open(filepath, "rU")
+        fp = io.open(filepath, "r", encoding='utf-8')
 
         # Read hierarchy
         self.__expectKeyword('HIERARCHY', fp)
@@ -468,7 +468,7 @@ class BVH():
         """
         Write this BVH structure to a file.
         """
-        f = io.open(filename, 'w')
+        f = io.open(filename, 'w', encoding='utf-8')
 
         # Write structure
         f.write('HIERARCHY\n')

@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Thomas Larsson, Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -114,6 +114,8 @@ class Proxy:
 
         self.deleteVerts = np.zeros(human.meshData.getVertexCount(), bool)
 
+        self.weightsCache = None
+        self.cacheSkel = None
 
     @property
     def material_file(self):
@@ -159,19 +161,20 @@ class Proxy:
         import files3d
         import guicommon
 
+        obj = False
         mesh = files3d.loadMesh(self.obj_file, maxFaces = self.max_pole)
         if not mesh:
             log.error("Failed to load %s", self.obj_file)
-
-        mesh.priority = self.z_depth           # Set render order
-        mesh.setCameraProjection(0)             # Set to model camera
-
-        obj = self.object = guicommon.Object(mesh, human.getPosition())
-        obj.proxy = self
-        obj.material = self.material
-        obj.setRotation(human.getRotation())
-        obj.setSolid(human.solid)    # Set to wireframe if human is in wireframe
-        # TODO perhaps other properties should be copied from human to object, such as subdivision state. For other hints, and duplicate code, see guicommon Object.setProxy()
+        else:
+            mesh.priority = self.z_depth           # Set render order
+            mesh.setCameraProjection(0)             # Set to model camera
+        
+            obj = self.object = guicommon.Object(mesh, human.getPosition())
+            obj.proxy = self
+            obj.material = self.material
+            obj.setRotation(human.getRotation())
+            obj.setSolid(human.solid)    # Set to wireframe if human is in wireframe
+            # TODO perhaps other properties should be copied from human to object, such as subdivision state. For other hints, and duplicate code, see guicommon Object.setProxy()
 
         # TODO why return both obj and mesh if you can access the mesh easily through obj.mesh?
         return mesh,obj
@@ -242,7 +245,7 @@ class Proxy:
         return self.vertexBoneWeights is not None
 
 
-    def getVertexWeights(self, humanWeights, skel=None):
+    def getVertexWeights(self, humanWeights, skel=None, allowCache=False):
         """
         Map armature weights mapped to the human to the proxy mesh through the
         proxy mapping.
@@ -263,6 +266,10 @@ class Proxy:
         # the bones of the reference skeleton, to those of the current skeleton.
         # The current skeleton is retrieved from the human object linked to this
         # proxy.
+        
+        import time
+        import log
+
         if self.hasCustomVertexWeights():
             # TODO we could introduce caching of weights here as long as the skeleton is not changed
             if skel is None:
@@ -272,25 +279,57 @@ class Proxy:
 
         # Remap weights through proxy mapping
         WEIGHT_THRESHOLD = 1e-4  # Threshold for including bone weight
+
+        recalculate = True
         weights = OrderedDict()
 
-        for bname, (indxs, wghts) in list(humanWeights.data.items()):
-            vgroup = []
-            empty = True
-            for (v,wt) in zip(indxs, wghts):
-                try:
-                    vlist = self.vertWeights[v]
-                except KeyError:
-                    vlist = []
-                for (pv, w) in vlist:
-                    pw = w*wt
-                    if (pw > WEIGHT_THRESHOLD):
-                        vgroup.append((pv, pw))
-                        empty = False
-            if not empty:
-                weights[bname] = vgroup
+        if not allowCache:
+            pass
+            #print("Caching not allowed")
+        else:
+            if self.weightsCache is None:
+                pass
+                #print("There is no cache")
+            else:
+                if not skel is None:
+                    if skel == self.cacheSkel:
+                        recalculate = False
+                    else:
+                        log.debug("The skeleton is different")
+
+        if recalculate:
+            log.debug("remapping weights for proxy " + self.name)
+            start = int(time.time() * 1000)
+            for bname, (indxs, wghts) in list(humanWeights.data.items()):
+                vgroup = []
+                empty = True
+                for (v,wt) in zip(indxs, wghts):
+                    try:
+                        vlist = self.vertWeights[v]
+                    except KeyError:
+                        vlist = []
+                    for (pv, w) in vlist:
+                        pw = w*wt
+                        if (pw > WEIGHT_THRESHOLD):
+                            vgroup.append((pv, pw))
+                            empty = False
+                if not empty:
+                    weights[bname] = vgroup
+            stop = int(time.time() * 1000) - start
+
+            hw = humanWeights.create(weights)
+            if allowCache:
+                self.weightsCache = hw
+                self.cacheSkel = skel
+            else:
+                self.weightsCache = None
+                self.cacheSkel = None
+
+            log.debug("remapping weights for " + self.name + " took " + str(stop) + " seconds")
+        else:
+            hw = self.weightsCache
         
-        return humanWeights.create(weights)#, vertexCount)
+        return hw
 
 
 doRefVerts = 1
@@ -337,13 +376,14 @@ def loadProxy(human, path, type="Clothes"):
 def loadTextProxy(human, filepath, type="Clothes"):
     import io
     try:
-        fp = io.open(filepath, "rU", encoding="utf-8")
+        fp = io.open(filepath, "r", encoding="utf-8")
     except IOError:
         log.error("*** Cannot open %s", filepath)
         return None
 
     folder = os.path.realpath(os.path.expanduser(os.path.dirname(filepath)))
     proxy = Proxy(filepath, type, human)
+    proxy.max_pole = 8;
     refVerts = []
 
     status = 0
@@ -496,6 +536,8 @@ def loadTextProxy(human, filepath, type="Clothes"):
         log.warning('Proxy file %s does not specify a Z depth. Using 50.', filepath)
         proxy.z_depth = 50
 
+    # since max-pole is used for the calculation of neighboring planes we have to double it initially
+    proxy.max_pole *= 2
     proxy._finalize(refVerts)
 
     return proxy
@@ -986,7 +1028,7 @@ def peekMetadata(proxyFilePath, proxyType=None):
 
     # ASCII proxy file
     import io
-    fp = io.open(proxyFilePath, 'rU', encoding="utf-8")
+    fp = io.open(proxyFilePath, 'r', encoding="utf-8")
     uuid = None
     tags = set()
     for line in fp:

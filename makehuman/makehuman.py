@@ -8,11 +8,11 @@ MakeHuman python entry-point.
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Glynn Clements, Jonas Hauquier, Joel Palmius
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3 
 
@@ -46,7 +46,7 @@ import subprocess
 ## Version information #########################################################
 __version__ = "1.2.0"                   # Major, minor and patch version number
 release = False                         # False for nightly
-versionSub = ""                         # Short version description
+versionSub = "Alpha4"                   # Short version description
 meshVersion = "hm08"                    # Version identifier of the basemesh
 ################################################################################
 
@@ -63,6 +63,9 @@ def getVersionDigitsStr():
     String representation of the version number only (no additional info)
     """
     return __version__
+
+def getVersionSubStr():
+    return versionSub
 
 def _versionStr():
     if versionSub:
@@ -289,9 +292,9 @@ forums at:
 
 The forums is also where you can contact the MakeHuman team. 
 
-Bugs can be reported on the project's bug tracker:
+Bugs can be reported on the project's bug tracker(s):
 
-    http://bugtracker.makehumancommunity.org
+    http://www.makehumancommunity.org/content/bugtracker.html
 """
 
 
@@ -317,7 +320,7 @@ class LicenseInfo(object):
         self.author = "MakeHuman Team"
         self.license = "AGPL3"
         self.homepage = "http://www.makehumancommunity.org"
-        self.copyright = "(c) MakeHuman.org 2001-2018"
+        self.copyright = "(c) www.makehumancommunity.org 2001-2018"
         self._keys = ["author", "license", "copyright", "homepage"]
         self._customized = False
 

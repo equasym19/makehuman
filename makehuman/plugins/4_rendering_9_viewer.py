@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Glynn Clements
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -62,10 +62,10 @@ class ViewerTaskView(gui3d.TaskView):
                 if not os.path.exists(mh.getPath('render')):
                     os.makedirs(mh.getPath('render'))
                 self.path = mh.getPath('render')
-            filename = mh.getSaveFileName(os.path.splitext(self.path)[0],
+            filename, ftype = mh.getSaveFileName(os.path.splitext(self.path)[0],
                                           'PNG Image (*.png);;JPEG Image (*.jpg);;Thumbnail (*.thumb);;All files (*.*)')
             if filename:
-                if os.path.splitext(filename)[1].lower() == '.thumb':
+                if 'Thumbnail' in ftype:
                     self.image.save(filename, iformat='PNG')
                 else:
                     self.image.save(filename)

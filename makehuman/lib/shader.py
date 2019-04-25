@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Glynn Clements
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -326,7 +326,7 @@ class Shader(object):
 
     @staticmethod
     def createShader(file, type, defines = [], defineables = None):
-        with io.open(file, 'rU') as f:
+        with io.open(file, 'r', encoding='utf-8') as f:
             source = f.read()
         if "#version" not in source:
             log.warning("The shader source in %s does not contain an explicit GLSL version declaration. This could cause problems with some compilers.", file)
@@ -482,9 +482,9 @@ class Shader(object):
                                 GL_TEXTURE0 + glmodule.MAX_TEXTURE_UNITS):
             glActiveTexture(gl_tex_idx)
             glBindTexture(GL_TEXTURE_2D, 0)
-            glDisable(GL_TEXTURE_2D)
+            #glDisable(GL_TEXTURE_2D)
             glBindTexture(GL_TEXTURE_1D, 0)
-            glDisable(GL_TEXTURE_1D)
+            #glDisable(GL_TEXTURE_1D)
 
     def requiresVertexTangent(self):
         return self.vertexTangentAttrId != -1

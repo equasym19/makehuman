@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Glynn Clements
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -38,6 +38,7 @@ TODO
 
 import sys
 import os
+import re
 import log
 from core import G
 
@@ -48,7 +49,6 @@ import events3d
 import qtgui
 import eventqueue
 import time
-import getpath
 
 import makehuman
 import getpath
@@ -724,7 +724,7 @@ class Application(QtWidgets.QApplication, events3d.EventHandler):
         gl.OnExit()
 
     def stop(self):
-        print("ABOUT TO STOP APPLICATION")
+        log.notice("ABOUT TO STOP APPLICATION")
         # Explicitly stop thread to avoid a potential segfault on linux
         self.messages.stop()
         self.callEvent('onStop', None)
@@ -811,19 +811,23 @@ class Application(QtWidgets.QApplication, events3d.EventHandler):
         self._postAsync(AsyncEvent(func, args, kwargs))
 
 def getSaveFileName(directory, filter = "All files (*.*)"):
-    path =QtWidgets.QFileDialog.getSaveFileName(G.app.mainwin, directory = directory, filter = filter)
-    if isinstance(path, tuple):
-        path = path[0]
-    return path
+    path, ftype = QtWidgets.QFileDialog.getSaveFileName(G.app.mainwin, directory=directory, filter=filter)
+    ext = os.path.splitext(path)[1]
+    if path and ((not ext) or (ext.lower() not in ftype.lower())) and '(*.*)' not in ftype:
+        compile_str = re.compile(r'\(.*\)')
+        match = compile_str.search(ftype)
+        if match:
+            result = match.group().strip('()').split('*')
+            if len(result) >= 2:
+                path = path + result[1]
+    return path, ftype
 
 def getOpenFileName(directory, filter = "All files (*.*)"):
-    path = QtWidgets.QFileDialog.getOpenFileName(G.app.mainwin, directory = directory, filter = filter)
-    if isinstance(path, tuple):
-        path = path[0]
-    return path
+    path, ftype = QtWidgets.QFileDialog.getOpenFileName(G.app.mainwin, directory=directory, filter=filter)
+    return path, ftype
 
 def getExistingDirectory(directory):
-    path = QtWidgets.QFileDialog.getExistingDirectory(G.app.mainwin, directory = directory)
+    path = QtWidgets.QFileDialog.getExistingDirectory(G.app.mainwin, directory=directory)
     if isinstance(path, tuple):
         path = path[0]
     return path

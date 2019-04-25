@@ -8,11 +8,11 @@ MakeHuman 3D Transformation functions.
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Joel Palmius, Marc Flerackers, Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -128,7 +128,7 @@ class Target(object):
         import makehuman
         data = []
         license = defaultTargetLicense()
-        with io.open(name, 'rU') as fd:
+        with io.open(name, 'r', encoding='utf-8') as fd:
             for line in fd:
                 line = line.strip()
                 if line.startswith('#'):
@@ -461,7 +461,7 @@ def saveTranslationTarget(obj, targetPath, groupToSave=None, epsilon=0.001):
     license_str = '\n'.join(['# ' + s for s in license_str])
 
     try:
-        with io.open(targetPath, 'w') as fileDescriptor:
+        with io.open(targetPath, 'w', encoding='utf-8') as fileDescriptor:
             fileDescriptor.write('%s\n\n\n' % license_str)
             for i in range(nVertsExported):
                 fileDescriptor.write('%d %f %f %f\n' % (vertsToSave[i], delta[i,0], delta[i,1], delta[i,2]))

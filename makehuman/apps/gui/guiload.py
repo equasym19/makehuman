@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Marc Flerackers
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -60,7 +60,7 @@ class HumanFileSort(fc.FileSort):
         meta = {}
 
         import io
-        f = io.open(filename, 'rU', encoding="utf-8")
+        f = io.open(filename, 'r', encoding="utf-8")
         for line in f:
             line = line.strip()
             lineData = line.split()
@@ -136,7 +136,7 @@ class LoadTaskView(gui3d.TaskView, filecache.MetadataCacher):
         uuid = ''
         tags = set()
         if os.path.isfile(filename) and os.path.splitext(filename)[1] == '.mhm':
-            with io.open(filename, 'r') as f:
+            with io.open(filename, 'r', encoding='utf-8') as f:
                 for line in f:
                     if line and not line.startswith('#'):
                         data = line.strip().split()
@@ -148,8 +148,8 @@ class LoadTaskView(gui3d.TaskView, filecache.MetadataCacher):
                             if data[0] == 'uuid':
                                 uuid = data[1]
                             if data[0] == 'tags':
-                                for tag in data[1:]:
-                                    tags.add(tag.replace(',,', ' ')[:25]) # Max. tag length is 25
+                                for tag in ' '.join(data[1:]).split(';'):
+                                    tags.add(tag[:25]) # Max. tag length is 25
                     if version and name and uuid and tags:
                         break
         if version < 'v1.2.0':

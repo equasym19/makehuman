@@ -8,11 +8,11 @@ Handles WaveFront .obj 3D mesh files.
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Joel Palmius, Marc Flerackers, Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -54,7 +54,7 @@ def loadObjFile(path, obj = None):
         name = os.path.splitext( os.path.basename(path) )[0]
         obj = module3d.Object3D(name)
 
-    objFile = io.open(path, 'rU', encoding="utf-8")
+    objFile = io.open(path, 'r', encoding="utf-8")
 
     fg = None
     mtl = None
@@ -203,6 +203,8 @@ def writeObjFile(path, meshes, writeMTL=True, config=None, filterMaskedFaces=Tru
     nVerts = 1
     nTexVerts = 1
     for mesh in meshes:
+        nPerFace = mesh.vertsPerFaceForExport
+        # print ("Export " + str (nPerFace) + "-faced mesh")
         fp.write("usemtl %s\n" % mesh.material.name)
         fp.write("g %s\n" % mesh.name)
 
@@ -212,13 +214,13 @@ def writeObjFile(path, meshes, writeMTL=True, config=None, filterMaskedFaces=Tru
                     if not mesh.face_mask[fn]:
                         continue
                     fuv = mesh.fuvs[fn]
-                    line = [" %d/%d/%d" % (fv[n]+nVerts, fuv[n]+nTexVerts, fv[n]+nVerts) for n in range(4)]
+                    line = [" %d/%d/%d" % (fv[n]+nVerts, fuv[n]+nTexVerts, fv[n]+nVerts) for n in range(nPerFace)]
                     fp.write("f" + "".join(line) + "\n")
             else:
                 for fn,fv in enumerate(mesh.fvert):
                     if not mesh.face_mask[fn]:
                         continue
-                    line = [" %d//%d" % (fv[n]+nVerts, fv[n]+nVerts) for n in range(4)]
+                    line = [" %d//%d" % (fv[n]+nVerts, fv[n]+nVerts) for n in range(nPerFace)]
                     fp.write("f" + "".join(line) + "\n")
         else:
             if mesh.has_uv:
@@ -226,13 +228,13 @@ def writeObjFile(path, meshes, writeMTL=True, config=None, filterMaskedFaces=Tru
                     if not mesh.face_mask[fn]:
                         continue
                     fuv = mesh.fuvs[fn]
-                    line = [" %d/%d" % (fv[n]+nVerts, fuv[n]+nTexVerts) for n in range(4)]
+                    line = [" %d/%d" % (fv[n]+nVerts, fuv[n]+nTexVerts) for n in range(nPerFace)]
                     fp.write("f" + "".join(line) + "\n")
             else:
                 for fn,fv in enumerate(mesh.fvert):
                     if not mesh.face_mask[fn]:
                         continue
-                    line = [" %d" % (fv[n]+nVerts) for n in range(4)]
+                    line = [" %d" % (fv[n]+nVerts) for n in range(nPerFace)]
                     fp.write("f" + "".join(line) + "\n")
 
         nVerts += len(mesh.coord)

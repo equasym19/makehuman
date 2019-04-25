@@ -8,11 +8,11 @@ Proxy mesh library
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Marc Flerackers
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -57,7 +57,7 @@ class ProxyFileSort(fc.FileSort):
         faces = 0
         try:
             import io
-            f = io.open(filename.replace('.proxy', '.obj'), 'rU', encoding="utf-8")
+            f = io.open(filename.replace('.proxy', '.obj'), 'r', encoding="utf-8")
             for line in f:
                 lineData = line.split()
                 if lineData and lineData[0] == 'f':

@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Jonas Hauquier, Glynn Clements, Joel Palmius, Marc Flerackers
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -279,7 +279,10 @@ def getRelativePath(path, relativeTo = [getDataPath(), getSysDataPath()], strict
         else:
             return path
 
-    return formatPath( os.path.relpath(path, relto) )
+    relto = os.path.abspath(os.path.realpath(relto))
+    path = os.path.abspath(os.path.realpath(path))
+    rpath = os.path.relpath(path, relto)
+    return formatPath(rpath)
 
 def findFile(relPath, searchPaths = [getDataPath(), getSysDataPath()], strict=False):
     """
@@ -404,11 +407,19 @@ def getJailedPath(filepath, relativeTo, jailLimits=[getDataPath(), getSysDataPat
                 return True
         return False
 
+    # These paths may become messed up when using symlinks for user home.
+    # Make sure we use the same paths when calculating relative paths. 
+    filepath = os.path.realpath(filepath)
+
+    if relativeTo is str:
+        relativeTo = os.path.realpath(relativeTo)
+
+    output = None
+
     if _withinJail(filepath):
         relPath = getRelativePath(filepath, relativeTo, strict=True)
         if relPath:
-            return relPath
+            output = relPath
         else:
-            return getRelativePath(filepath, jailLimits)
-    else:
-        return None
+            output = getRelativePath(filepath, jailLimits)
+    return output

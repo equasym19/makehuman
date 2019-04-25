@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Jonas Hauquier, Marc Flerackers
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -272,15 +272,18 @@ class MaterialTaskView(gui3d.TaskView, filecache.MetadataCacher):
         Produce a portable path for writing to file.
         """
         # TODO move as helper func to material module
-        if objFile:
-            objFile = getpath.canonicalPath(objFile)
-            if os.path.isfile(objFile):
-                objFile = os.path.dirname(objFile)
-            searchPaths = [ objFile ]
-        else:
-            searchPaths = []
+        if filepath:
+            if objFile:
+                objFile = getpath.canonicalPath(objFile)
+                if os.path.isfile(objFile):
+                    objFile = os.path.dirname(objFile)
+                searchPaths = [ objFile ]
+            else:
+                searchPaths = []
 
-        return getpath.getJailedPath(filepath, searchPaths)
+            return getpath.getJailedPath(filepath, searchPaths)
+        else:
+            return ''
 
     def getMaterialPath(self, relPath, objFile = None):
         if objFile:

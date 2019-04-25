@@ -8,11 +8,11 @@ IPython Qt Console
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Jonas Hauquier, Aranuvir
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -31,7 +31,7 @@ IPython Qt Console
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-**Coding Standards:**  See http://www.makehumancommunity.org/node/165
+
 
 Abstract
 --------
@@ -142,7 +142,7 @@ class IPythonConsoleWidget(QtWidgets.QWidget, gui.Widget):
 
         ipy_stylesheet_path = getpath.getSysDataPath('themes/%s_console.css' % theme)
         try:
-            with open(ipy_stylesheet_path, 'r') as css_file:
+            with open(ipy_stylesheet_path, 'r', encoding='utf-8') as css_file:
                 stylesheet = css_file.read()
         except IOError:
             # No file to load, use default theme

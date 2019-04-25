@@ -8,15 +8,15 @@ MakeHuman build prepare
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Joel Palmius
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
-    This file is part of MakeHuman (www.makehuman.org).
+    This file is part of MakeHuman (www.makehumancommunity.org).
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
@@ -159,6 +159,15 @@ if os.path.exists(socket):
     copy_tree(tocopy, todest)
 else:
     print("socket plugin was not found in parent directory")
+
+mp = os.path.abspath(os.path.join(parentdir,'community-plugins-massproduce'))
+if os.path.exists(mp):
+    tocopy = os.path.abspath(os.path.join(mp,'9_massproduce'))
+    todest = os.path.abspath(os.path.join(pluginsdir,'9_massproduce'))
+    copy_tree(tocopy, todest)
+else:
+    print("mass produce plugin was not found in parent directory")
+
 
 
 print("\n\nBuild has been prepared in " + exportDir + ".\n")

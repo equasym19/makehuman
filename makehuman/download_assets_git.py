@@ -8,11 +8,11 @@ MakeHuman python entry-point.
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Joel Palmius
 
-**Copyright(c):**      MakeHuman Team 2016
+**Copyright(c):**      MakeHuman Team 2016 - 2019
 
 **Licensing:**         AGPL3 
 

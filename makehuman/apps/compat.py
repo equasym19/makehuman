@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -211,7 +211,7 @@ class MHM10Loader(object):
     def getModifierMapping(self):
         if self.modifier_mapping is None:
             self.modifier_mapping = dict()
-            f = io.open(getpath.getSysDataPath('modifiers/mh_1-0_modifier_mapping.csv'), 'r')
+            f = io.open(getpath.getSysDataPath('modifiers/mh_1-0_modifier_mapping.csv'), 'r', encoding='utf-8')
             csvreader = csv.reader(f, delimiter=',', quotechar='"')
             for r_idx, row in enumerate(csvreader):
                 if r_idx == 0:

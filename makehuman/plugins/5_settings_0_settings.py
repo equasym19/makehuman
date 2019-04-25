@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Joel Palmius, Marc Flerackers, Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -198,7 +198,7 @@ class SettingsTaskView(gui3d.TaskView):
                     if sys.platform.startswith('darwin') or sys.platform.startswith('linux') and not os.path.isdir(getConfigPath('')):
                         os.makedirs(getConfigPath(''))
                     if os.path.isdir(homePath) and os.path.isdir(getConfigPath('')):
-                        with io.open(filePath, 'w') as f:
+                        with io.open(filePath, 'w', encoding='utf-8') as f:
                             f.writelines(homePath + '\n')
                     self.homeButton.setLabel('Delete Config File')
                     gui3d.app.statusPersist('Home Folder Location: ' + homePath)
@@ -331,6 +331,8 @@ class SettingsTaskView(gui3d.TaskView):
         text = self.countEdit.text
         if text.isdigit():
             gui3d.app.setSetting('tagCount', int(text))
+        else:
+            self.countEdit.setText(str(gui3d.app.getSetting('tagCount')))
 
 def load(app):
     category = app.getCategory('Settings')

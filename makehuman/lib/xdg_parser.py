@@ -10,11 +10,11 @@
 
 **Authors:**           Aranuvir
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
-    This file is part of MakeHuman (www.makehuman.org).
+    This file is part of MakeHuman (www.makehumancommunity.org).
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
@@ -57,7 +57,7 @@ if isLinux:
         dirs = dict()
 
         if os.path.isfile(path):
-            with io.open(path, 'r') as file:
+            with io.open(path, 'r', encoding='utf-8') as file:
                 for line in file:
                     if line and line.startswith('XDG_'):
                         line = line.strip()

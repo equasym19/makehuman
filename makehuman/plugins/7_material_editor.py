@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Glynn Clements, Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -80,6 +80,12 @@ class MaterialEditorTaskView(gui3d.TaskView):
         self.paramBox = self.addRightWidget(gui.GroupBox('Shader parameters'))
 
         self.materialBox = self.addRightWidget(gui.GroupBox('Material settings'))
+
+        # add a description box to inform about the asset
+        descBox = self.addLeftWidget(gui.GroupBox('Description'))
+        self.descrLbl = descBox.addWidget(gui.TextView(''))
+        self.descrLbl.setSizePolicy(gui.QtWidgets.QSizePolicy.Ignored, gui.QtWidgets.QSizePolicy.Preferred)
+        self.descrLbl.setWordWrap(True)
 
         if not shader.Shader.supported():
             log.notice('Shaders not supported')
@@ -497,6 +503,12 @@ class MaterialEditorTaskView(gui3d.TaskView):
 
     def reloadMaterial(self):
         obj = self.getSelectedObject()
+
+        # update description
+        self.descrLbl.setText (obj.name + ":\n" +
+                str(len(obj.mesh.coord)) + " vertices\n" +
+                str(len(obj.mesh.fvert)) + " faces\n" +
+                str (obj.mesh.vertsPerFaceForExport) + " vertices per face.")
 
         if shader.Shader.supported():
             self.listShaders(obj.material)

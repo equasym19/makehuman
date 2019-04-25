@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -103,7 +103,7 @@ def downloadFile(ftp, filePath, destination, fileProgress):
 
 def parseContentsFile(filename):
     import io
-    f = io.open(filename, 'rU', encoding="utf-8")
+    f = io.open(filename, 'r', encoding="utf-8")
     fileData = f.read()
     contents = {}
     for l in fileData.split('\n'):

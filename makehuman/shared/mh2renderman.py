@@ -8,11 +8,11 @@ Renderman Export functions
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Marc Flerackers
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -563,7 +563,7 @@ class RMRScene:
         self.lights = []
         RMRLight.lightCounter = 0
         path = os.path.join(lightsFolderPath,lightFile)
-        fileDescriptor = io.open(path)
+        fileDescriptor = io.open(path, 'r', encoding='utf-8')
 
         for data in fileDescriptor:
             #print (data)

@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -306,10 +306,11 @@ class ProxyChooserTaskView(gui3d.TaskView, filecache.MetadataCacher):
             self.deselectProxy(None, suppressSignal = True)
 
         mesh,obj = pxy.loadMeshAndObject(human)
-        mesh.setPickable(True)  # Allow mouse picking for proxies attached to human
         
         if not mesh:
             return
+
+        mesh.setPickable(True)  # Allow mouse picking for proxies attached to human
 
         gui3d.app.addObject(obj)
 

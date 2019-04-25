@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Joel Palmius
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -41,7 +41,7 @@ import webbrowser
 import mh
 import gui
 import os
-import gitutils
+from mhversion import MHVersion
 
 class HelpTaskView(gui3d.TaskView):
 
@@ -50,7 +50,7 @@ class HelpTaskView(gui3d.TaskView):
         gui3d.TaskView.__init__(self, category, 'Help')
 
         aboutBox = self.addLeftWidget(gui.GroupBox('About MakeHuman'))
-        self.aboutButton = aboutBox.addWidget(gui.Button('About'))
+        self.aboutButton = aboutBox.addWidget(gui.Button('About / License'))
         self.websiteButton = aboutBox.addWidget(gui.Button('Website'))
         self.facebookButton = aboutBox.addWidget(gui.Button('FaceBook page'))
 
@@ -58,6 +58,7 @@ class HelpTaskView(gui3d.TaskView):
         self.faqButton = optionsBox.addWidget(gui.Button('FAQ'))
         self.forumButton = optionsBox.addWidget(gui.Button('Forum'))
         self.manualButton = optionsBox.addWidget(gui.Button('Wiki'))
+        self.patreonButton = optionsBox.addWidget(gui.Button('Patreon'))
         self.reportBugButton = optionsBox.addWidget(gui.Button('Report bug'))
         self.requestFeatureButton = optionsBox.addWidget(gui.Button('Request feature'))
 
@@ -78,11 +79,11 @@ class HelpTaskView(gui3d.TaskView):
         
         @self.reportBugButton.mhEvent
         def onClicked(event):
-            webbrowser.open('http://bugtracker.makehumancommunity.org/issues/new?project_id=makehuman')
+            webbrowser.open('http://www.makehumancommunity.org/content/bugtracker.html')
           
         @self.requestFeatureButton.mhEvent
         def onClicked(event):
-            webbrowser.open('http://bugtracker.makehumancommunity.org/issues/new?project_id=makehuman&issue[tracker_id]=2')
+            webbrowser.open('http://www.makehumancommunity.org/forum/viewforum.php?f=3')
 
         @self.faqButton.mhEvent
         def onClicked(event):
@@ -91,16 +92,19 @@ class HelpTaskView(gui3d.TaskView):
         @self.forumButton.mhEvent
         def onClicked(event):
             webbrowser.open('http://www.makehumancommunity.org/forum')
-            
+
+        @self.patreonButton.mhEvent
+        def onClicked(event):
+            webbrowser.open('https://www.patreon.com/makehuman/overview')
+
         @self.facebookButton.mhEvent
         def onClicked(event):
             webbrowser.open('https://www.facebook.com/makehuman/')
 
         @self.versionButton.mhEvent
         def onClicked(event):
-            version_string = mh.getVersionDigitsStr() + ' ' + gitutils.getCurrentBranch() \
-                             + ':' + gitutils.getCurrentCommit(short=True)
-            gui3d.app.clipboard().setText(version_string)
+            mhv = MHVersion()
+            gui3d.app.clipboard().setText(mhv.getFullVersionStr())
             
     def onShow(self, event):
     

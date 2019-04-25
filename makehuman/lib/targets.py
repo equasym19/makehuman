@@ -6,11 +6,11 @@
 
 **Product Home Page:** http://www.makehumancommunity.org/
 
-**Code Home Page:**    https://bitbucket.org/MakeHuman/makehuman/
+**Github Code Home Page:**    https://github.com/makehumancommunity/
 
 **Authors:**           Glynn Clements, Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2018
+**Copyright(c):**      MakeHuman Team 2001-2019
 
 **Licensing:**         AGPL3
 
@@ -330,7 +330,7 @@ class ZippedTargetsCrawler(TargetsCrawler):
 
         # Walk file path (not .npz archive) to find images to add to file list
         import io
-        with open(os.path.join(self.dataPath, 'images.list'), 'rU', encoding="utf-8") as imgfile:
+        with open(os.path.join(self.dataPath, 'images.list'), 'r', encoding="utf-8") as imgfile:
             for line in imgfile:
                 name = line.rstrip()
                 if not name.endswith('.png'):
