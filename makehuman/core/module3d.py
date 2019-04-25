@@ -120,7 +120,7 @@ class Object3D(object):
         self.calculateTangents = True   # TODO disable when not needed by shader
         self.object3d = None
         self._priority = 0
-        self.MAX_FACES = 8
+        self.MAX_FACES = 32
 
         # Cache used for retrieving vertex colors multiplied with material diffuse color
         self._old_diff = None

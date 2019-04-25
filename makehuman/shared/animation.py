@@ -674,6 +674,7 @@ class VertexBoneWeights(object):
         for bname,vgroup in list(vertexWeightsDict.items()):
             if len(vgroup) == 0:
                 continue
+            print(bname,vgroup)
             weights = []
             verts = []
             v_lookup = {}
@@ -708,6 +709,9 @@ class VertexBoneWeights(object):
             vs = list(vs)
             ws = list(ws)
         rw_i = np.argwhere(wtot == 0)[:,0]
+        print("RWI")
+        print(rw_i)
+        print(wtot[2])
         vs.extend(rw_i)
         ws.extend(np.ones(len(rw_i), dtype=np.float32))
         if len(rw_i) > 0:

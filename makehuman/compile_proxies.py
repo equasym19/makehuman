@@ -92,7 +92,8 @@ def compileProxy(path, human):
 
 if __name__ == '__main__':
     human = Human(files3d.loadMesh(getSysDataPath("3dobjs/base.obj")))
-    allFiles = getAllFiles('data', ['*.mhclo', '*.proxy'])
+    #allFiles = getAllFiles('data', ['*.mhclo', '*.proxy'])
+    allFiles = getAllFiles('/home/christian/y/makehuman/v1py3/data/hair', ['*.mhclo', '*.proxy'])
     for allProxies in allFiles:
         for (i, path) in enumerate(allProxies):
             compileProxy(path, human)
