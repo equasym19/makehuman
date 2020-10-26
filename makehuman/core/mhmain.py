@@ -10,7 +10,7 @@
 
 **Authors:**           Glynn Clements, Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2019
+**Copyright(c):**      MakeHuman Team 2001-2020
 
 **Licensing:**         AGPL3
 
@@ -236,6 +236,9 @@ class MHApplication(gui3d.Application, mh.Application):
                 'guiTheme': 'makehuman',
                 'restoreWindowSize': True,
                 'windowGeometry': '',
+                'useHDPI': False,
+                'noShaders': False,
+                'noSampleBuffers': False,
                 'tagFilterMode': 'OR',
                 'useNameTags': False,
                 'tagCount': 5,
@@ -268,12 +271,15 @@ class MHApplication(gui3d.Application, mh.Application):
                 'preloadTargets': False,
                 'restoreWindowSize': True,
                 'windowGeometry': '',
+                'useHDPI': False,
+                'noShaders': False,
+                'noSampleBuffers': False,
                 'tagFilterMode': 'OR',
                 'useNameTags': False,
                 'tagCount': 5,
                 'makehumanTags': ['makehuman™'],
                 'keepCustomValues': False,
-                '_versionSentinel': 'ADF83BF89112337B261431C15C660D9A' # GM Time was: Sat, Feb 09 2019 23:13:56 +0000
+                '_versionSentinel': 'B26472743DC5DCE1721ADB5A91AAECAA' # GM Time was: Thu, Jun 25 2020 22:30:01 +0000
             }
 
         self._settings = dict(self._default_settings)
@@ -808,10 +814,10 @@ class MHApplication(gui3d.Application, mh.Application):
         # self.splash.finish(self.mainwin)
         self.splash.close()
         self.splash = None
-
-        if not self.args.get('noshaders', False) and \
+            
+        if (not self.args.get('noshaders', False) or G.preStartupSettings["noShaders"]) and \
           ( not mh.Shader.supported() or mh.Shader.glslVersion() < (1,20) ):
-            self.prompt('Warning', 'Your system does not support OpenGL shaders (GLSL v1.20 required).\nOnly simple shading will be available.', 'Ok', None, None, None, 'glslWarning')
+            self.prompt('Warning', 'GLSL shaders have been disabled or are not supported.\nOnly simple shading will be available.', 'Ok', None, None, None, 'glslWarning')
 
         # Restore main window size and position
         geometry = self.getSetting('windowGeometry')

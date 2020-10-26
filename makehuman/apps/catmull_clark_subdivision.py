@@ -12,7 +12,7 @@ Mesh Subdivision Plugin.
 
 **Authors:**           Marc Flerackers, Glynn Clements
 
-**Copyright(c):**      MakeHuman Team 2001-2019
+**Copyright(c):**      MakeHuman Team 2001-2020
 
 **Licensing:**         AGPL3
 
@@ -515,6 +515,10 @@ def createSubdivisionObject(object, staticFaceMask=None):
     #
     if object.vertsPerFaceForExport != 4:
         log.debug('No Catmull-Clark subdivision on triangle-mesh %s.', object.name)
+        return object
+
+    if len(object.texco) == 0:
+        log.debug('No Catmull-Clark subdivision on mesh %s without UV map.', object.name)
         return object
 
     obj = SubdivisionObject(object, staticFaceMask)

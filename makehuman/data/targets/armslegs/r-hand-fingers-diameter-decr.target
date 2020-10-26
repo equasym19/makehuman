@@ -1,33 +1,19 @@
-# This is a MakeHuman target originally developed by Manuel Bastioni.
+# This is a target file for MakeHuman
+# 
+# This asset was explicitly released as CC0 in september 2020. The license
+# text for CC0 can be found in the root of this repository.
 #
 # Original copyright (C) 2014 Manuel Bastioni 
 #
-# The copyright was explicitly transfered to other team members in 2016.
+# The copyright was explicitly transfered to other team members in 2016:
 #
-# Copyright (C) 2019 Data Collection AB, https://www.datacollection.se
-# Copyright (C) 2019 Joel Palmius
-# Copyright (C) 2019 Jonas Hauquier
+# Copyright (C) 2020 Data Collection AB, https://www.datacollection.se
+# Copyright (C) 2020 Joel Palmius
+# Copyright (C) 2020 Jonas Hauquier
 #
 # The primary legal contact for MakeHuman is Data Collection AB.
 #
 # For more information, see homepage at http://www.makehumancommunity.org
-#
-# This file is licensed AGPLv3
-#
-#    This file is part of MakeHuman (www.makehumancommunity.org).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # basemesh hm08
 1898 -.006 -.009 -.008
@@ -805,7 +791,7 @@
 2670 -.012 .004 .006
 2671 .013 .005 -.002
 2672 -.017 -.006 .005
-2673 -.009 -.01 0
+2673 -.009 -.01 -.001
 2674 -.015 .004 .002
 2675 .007 -.009 -.008
 2676 .01 0 -.01
@@ -813,7 +799,7 @@
 2678 0 -.013 -.006
 2679 -.006 -.011 -.006
 2680 -.003 -.007 -.006
-2681 0 -.008 -.003
+2681 -.001 -.008 -.003
 2682 -.011 -.002 -.006
 2683 .004 -.007 -.012
 2684 0 -.008 -.004
@@ -898,12 +884,12 @@
 2763 .009 .01 0
 2764 .01 .009 0
 2765 .002 .008 -.005
-2766 0 -.01 0
+2766 0 -.01 .001
 2767 -.003 -.011 -.002
 2768 -.011 -.004 -.003
 2769 0 -.007 -.008
 2770 .004 -.011 -.002
-2771 .006 -.013 0
+2771 .006 -.013 -.001
 2772 -.015 -.005 .003
 2773 -.009 -.012 .013
 2774 -.003 -.007 -.006

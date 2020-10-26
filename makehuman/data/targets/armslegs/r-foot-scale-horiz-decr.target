@@ -1,33 +1,19 @@
-# This is a MakeHuman target originally developed by Manuel Bastioni.
+# This is a target file for MakeHuman
+# 
+# This asset was explicitly released as CC0 in september 2020. The license
+# text for CC0 can be found in the root of this repository.
 #
 # Original copyright (C) 2014 Manuel Bastioni 
 #
-# The copyright was explicitly transfered to other team members in 2016.
+# The copyright was explicitly transfered to other team members in 2016:
 #
-# Copyright (C) 2019 Data Collection AB, https://www.datacollection.se
-# Copyright (C) 2019 Joel Palmius
-# Copyright (C) 2019 Jonas Hauquier
+# Copyright (C) 2020 Data Collection AB, https://www.datacollection.se
+# Copyright (C) 2020 Joel Palmius
+# Copyright (C) 2020 Jonas Hauquier
 #
 # The primary legal contact for MakeHuman is Data Collection AB.
 #
 # For more information, see homepage at http://www.makehumancommunity.org
-#
-# This file is licensed AGPLv3
-#
-#    This file is part of MakeHuman (www.makehumancommunity.org).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # basemesh hm08
 4788 -.001 0 0
@@ -343,7 +329,7 @@
 5875 -.004 0 0
 5876 .033 0 0
 5877 .024 0 0
-5878 0 0 0
+5878 -.001 0 0
 5879 .031 0 0
 5880 .023 0 0
 5881 .007 0 0
@@ -389,7 +375,7 @@
 5922 .029 0 0
 5924 -.008 0 0
 5925 .033 0 0
-5926 0 0 0
+5926 -.001 0 0
 5927 -.006 0 0
 5928 .028 0 0
 5929 .034 0 0
@@ -398,7 +384,7 @@
 5932 -.006 0 0
 5933 .034 0 0
 5934 .033 0 0
-5935 0 0 0
+5935 .001 0 0
 5936 -.008 0 0
 5937 .038 0 0
 5938 .005 0 0
@@ -408,7 +394,7 @@
 5942 -.004 0 0
 5943 .034 0 0
 5944 .033 0 0
-5945 0 0 0
+5945 .001 0 0
 5946 -.008 0 0
 5947 .039 0 0
 5948 .005 0 0
@@ -707,7 +693,7 @@
 6242 .106 0 0
 6243 .109 0 0
 6244 .054 0 0
-6245 0 0 0
+6245 .001 0 0
 6246 -.016 0 0
 6247 -.075 0 0
 6248 -.101 0 0
@@ -1221,20 +1207,20 @@
 14147 .053 0 0
 14148 .078 0 0
 14149 .078 0 0
-14150 0 0 0
-14151 0 0 0
+14150 .001 0 0
+14151 .001 0 0
 14152 .027 0 0
 14153 .027 0 0
-14154 0 0 0
-14155 0 0 0
+14154 .001 0 0
+14155 .001 0 0
 14156 .027 0 0
 14157 .027 0 0
-14158 0 0 0
-14159 0 0 0
+14158 .001 0 0
+14159 .001 0 0
 14160 .027 0 0
 14161 .027 0 0
-14162 0 0 0
-14163 0 0 0
+14162 .001 0 0
+14163 .001 0 0
 14164 .027 0 0
 14165 .027 0 0
 14166 -.049 0 0

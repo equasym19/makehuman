@@ -10,7 +10,7 @@
 
 **Authors:**           Thomas Larsson, Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2019
+**Copyright(c):**      MakeHuman Team 2001-2020
 
 **Licensing:**         AGPL3
 
@@ -299,7 +299,7 @@ class Proxy:
 
         if recalculate:
             log.debug("remapping weights for proxy " + self.name)
-            start = int(time.time() * 1000)
+            start = time.perf_counter()
             for bname, (indxs, wghts) in list(humanWeights.data.items()):
                 vgroup = []
                 empty = True
@@ -315,7 +315,7 @@ class Proxy:
                             empty = False
                 if not empty:
                     weights[bname] = vgroup
-            stop = int(time.time() * 1000) - start
+            stop = time.perf_counter()
 
             hw = humanWeights.create(weights)
             if allowCache:
@@ -325,7 +325,7 @@ class Proxy:
                 self.weightsCache = None
                 self.cacheSkel = None
 
-            log.debug("remapping weights for " + self.name + " took " + str(stop) + " seconds")
+            log.debug("remapping weights for %s took %.5f seconds", self.name, stop - start)
         else:
             hw = self.weightsCache
         

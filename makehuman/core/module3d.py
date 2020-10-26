@@ -10,7 +10,7 @@
 
 **Authors:**           Marc Flerackers, Glynn Clements, Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2019
+**Copyright(c):**      MakeHuman Team 2001-2020
 
 **Licensing:**         AGPL3
 
@@ -722,7 +722,8 @@ class Object3D(object):
         if resize is True:
             # now lets recalculate the maximum number of faces belonging to a plane
             newmax = np.max(self.nfaces)
-            log.debug ("Calculated maximum number of faces for one vertex: %d", newmax)
+            if newmax > 2:                  # Avoid the information when function calculates internal objects not to confuse users
+                log.debug ("Calculated maximum number of faces for one vertex: %d", newmax)
 
             # unfortunately catmull-clark expects maxpoles and not maxfaces, so we need 
             # also to calculate max-poles
@@ -753,7 +754,8 @@ class Object3D(object):
                 if m > maxpole:
                     maxpole = m
 
-            log.debug ("Calculated maximum number of poles for one vertex: %d", maxpole)
+            if maxpole > 2:                  # Avoid the information when function calculates internal objects not to confuse users
+                log.debug ("Calculated maximum number of poles for one vertex: %d", maxpole)
 
             if newmax < maxpole:
                 newmax = maxpole

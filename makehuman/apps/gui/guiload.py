@@ -10,7 +10,7 @@
 
 **Authors:**           Marc Flerackers
 
-**Copyright(c):**      MakeHuman Team 2001-2019
+**Copyright(c):**      MakeHuman Team 2001-2020
 
 **Licensing:**         AGPL3
 
@@ -82,7 +82,7 @@ class LoadTaskView(gui3d.TaskView, filecache.MetadataCacher):
 
         self.modelPath = None
 
-        self.fileentry = self.addTopWidget(gui.FileEntryView('Browse', mode='dir'))
+        self.fileentry = self.addTopWidget(gui.FileEntryView(label='Selected Folder:', buttonLabel='Browse', mode='dir'))
         self.fileentry.filter = 'MakeHuman Models (*.mhm)'
 
         # Declare new settings

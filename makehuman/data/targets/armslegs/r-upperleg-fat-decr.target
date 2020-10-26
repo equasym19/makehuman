@@ -1,33 +1,19 @@
-# This is a MakeHuman target originally developed by Manuel Bastioni.
+# This is a target file for MakeHuman
+# 
+# This asset was explicitly released as CC0 in september 2020. The license
+# text for CC0 can be found in the root of this repository.
 #
 # Original copyright (C) 2014 Manuel Bastioni 
 #
-# The copyright was explicitly transfered to other team members in 2016.
+# The copyright was explicitly transfered to other team members in 2016:
 #
-# Copyright (C) 2019 Data Collection AB, https://www.datacollection.se
-# Copyright (C) 2019 Joel Palmius
-# Copyright (C) 2019 Jonas Hauquier
+# Copyright (C) 2020 Data Collection AB, https://www.datacollection.se
+# Copyright (C) 2020 Joel Palmius
+# Copyright (C) 2020 Jonas Hauquier
 #
 # The primary legal contact for MakeHuman is Data Collection AB.
 #
 # For more information, see homepage at http://www.makehumancommunity.org
-#
-# This file is licensed AGPLv3
-#
-#    This file is part of MakeHuman (www.makehumancommunity.org).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # basemesh hm08
 4243 0 .001 .003
@@ -82,7 +68,6 @@
 4408 .005 0 -.005
 4409 .047 0 -.02
 4410 .063 -.008 -.022
-4413 0 0 0
 4415 .039 .003 -.028
 4416 .009 0 -.014
 4417 .064 0 -.033
@@ -266,7 +251,6 @@
 4600 -.024 .029 .015
 4601 .024 -.006 .017
 4602 -.015 .019 .011
-4604 0 0 0
 4605 .006 0 -.003
 4610 .005 0 0
 4611 .002 0 0
@@ -343,8 +327,6 @@
 16140 .026 -.016 -.014
 16142 -.001 0 0
 16143 -.003 0 0
-16144 0 0 0
-16145 0 0 0
 16146 -.005 0 0
 16147 -.01 0 0
 16148 -.006 0 0
@@ -431,7 +413,6 @@
 16231 -.002 0 0
 16232 -.013 .003 0
 16233 .006 .011 -.039
-16236 0 0 0
 16237 .004 0 0
 16238 .006 .009 -.037
 16239 .005 .01 -.032

@@ -12,7 +12,7 @@ Proxy mesh library
 
 **Authors:**           Marc Flerackers
 
-**Copyright(c):**      MakeHuman Team 2001-2019
+**Copyright(c):**      MakeHuman Team 2001-2020
 
 **Licensing:**         AGPL3
 
@@ -129,6 +129,10 @@ class ProxyTaskView(proxychooser.ProxyChooserTaskView):
             return
 
         self.human.setProxy(None)
+
+        if self.descriptionWidget:
+            self.descrLbl.setText('')
+
         self.filechooser.deselectItem(mhclofile)
 
         if not suppressSignal:

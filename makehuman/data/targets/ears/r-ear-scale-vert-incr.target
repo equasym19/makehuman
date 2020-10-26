@@ -1,33 +1,19 @@
-# This is a MakeHuman target originally developed by Manuel Bastioni.
+# This is a target file for MakeHuman
+# 
+# This asset was explicitly released as CC0 in september 2020. The license
+# text for CC0 can be found in the root of this repository.
 #
 # Original copyright (C) 2014 Manuel Bastioni 
 #
-# The copyright was explicitly transfered to other team members in 2016.
+# The copyright was explicitly transfered to other team members in 2016:
 #
-# Copyright (C) 2019 Data Collection AB, https://www.datacollection.se
-# Copyright (C) 2019 Joel Palmius
-# Copyright (C) 2019 Jonas Hauquier
+# Copyright (C) 2020 Data Collection AB, https://www.datacollection.se
+# Copyright (C) 2020 Joel Palmius
+# Copyright (C) 2020 Jonas Hauquier
 #
 # The primary legal contact for MakeHuman is Data Collection AB.
 #
 # For more information, see homepage at http://www.makehumancommunity.org
-#
-# This file is licensed AGPLv3
-#
-#    This file is part of MakeHuman (www.makehumancommunity.org).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # basemesh hm08
 267 0 .005 0
@@ -63,9 +49,11 @@
 1002 0 -.015 0
 1003 0 -.006 0
 1005 0 .002 0
+1006 0 .001 0
 5092 0 -.005 0
 5097 0 -.045 0
 5098 0 -.034 0
+5202 0 .001 0
 5235 0 -.006 0
 5236 0 .009 0
 5237 0 .013 0
@@ -79,6 +67,7 @@
 5376 0 .033 0
 5383 0 .034 0
 5385 0 .022 0
+5391 0 .001 0
 5398 0 .008 0
 5399 0 .042 0
 5400 0 .039 0
@@ -114,6 +103,7 @@
 5430 0 -.02 0
 5431 0 -.044 0
 5432 0 -.058 0
+5433 0 -.001 0
 5434 0 -.019 0
 5435 0 .064 0
 5436 0 -.054 0
@@ -191,6 +181,7 @@
 5509 0 -.014 0
 5510 0 .029 0
 5511 0 .016 0
+5512 0 .001 0
 5513 0 .032 0
 5514 0 .024 0
 5515 0 .015 0
@@ -218,6 +209,7 @@
 5538 0 -.011 0
 5539 0 -.017 0
 5540 0 .006 0
+5541 0 .001 0
 5542 0 .02 0
 5543 0 .025 0
 5558 0 -.009 0
@@ -255,6 +247,7 @@
 5593 0 .019 0
 5594 0 .037 0
 5595 0 .04 0
+5596 0 -.001 0
 5597 0 .006 0
 5598 0 -.007 0
 5599 0 -.036 0
@@ -271,6 +264,7 @@
 5610 0 -.005 0
 5611 0 .056 0
 5612 0 .016 0
+5613 0 -.001 0
 5614 0 .042 0
 5615 0 .027 0
 5616 0 -.017 0
@@ -303,6 +297,7 @@
 5644 0 .003 0
 5645 0 .016 0
 5646 0 .015 0
+5647 0 .001 0
 5648 0 -.002 0
 5649 0 .019 0
 5650 0 -.01 0
@@ -311,6 +306,7 @@
 5653 0 .022 0
 5654 0 .048 0
 5655 0 -.039 0
+5656 0 .001 0
 5657 0 -.007 0
 5658 0 -.047 0
 5659 0 .008 0
@@ -329,6 +325,7 @@
 5672 0 .054 0
 5673 0 -.029 0
 5674 0 .008 0
+5675 0 .001 0
 5676 0 .003 0
 5677 0 -.002 0
 5678 0 -.005 0
@@ -345,6 +342,7 @@
 5691 0 .008 0
 5693 0 .002 0
 5694 0 .007 0
+5695 0 -.001 0
 5696 0 .002 0
 5697 0 -.003 0
 5698 0 -.007 0

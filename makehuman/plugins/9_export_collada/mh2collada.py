@@ -10,7 +10,7 @@
 
 **Authors:**           Thomas Larsson, Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2019
+**Copyright(c):**      MakeHuman Team 2001-2020
 
 **Licensing:**         AGPL3
 
@@ -66,7 +66,7 @@ Delta = [0,0.01,0]
 def exportCollada(filepath, config):
     progress = Progress()
 
-    time1 = time.clock()
+    time1 = time.perf_counter()
     human = config.human
     config.setupTexFolder(filepath)
     filename = os.path.basename(filepath)
@@ -163,7 +163,7 @@ def exportCollada(filepath, config):
             '</COLLADA>\n')
 
         progress(1, None, "Export finished.")
-        time2 = time.clock()
+        time2 = time.perf_counter()
         log.message("Wrote Collada file in %g s: %s", time2-time1, filepath)
 
     finally:

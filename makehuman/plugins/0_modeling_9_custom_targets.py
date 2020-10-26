@@ -12,7 +12,7 @@ Plugin to apply custom targets.
 
 **Authors:**           Eduardo Menezes de Morais, Jonas Hauquier
 
-**Copyright(c):**      MakeHuman Team 2001-2019
+**Copyright(c):**      MakeHuman Team 2001-2020
 
 **Licensing:**         AGPL3
 
@@ -115,6 +115,7 @@ class CustomTargetsTaskView(gui3d.TaskView):
         group = []
 
         for root, dirs, files in os.walk(self.targetsPath):
+            dirs.sort()
             groupBox = self.targetsBox.addWidget(gui.GroupBox('Targets'))
             folderGroup = self.folderBox.addWidget(FolderButton(self, group, os.path.basename(root), groupBox, len(self.folderBox.children) == 0))
             folderGroup.targetCount = 0

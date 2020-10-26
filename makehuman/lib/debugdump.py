@@ -10,7 +10,7 @@
 
 **Authors:**           Joel Palmius
 
-**Copyright(c):**      MakeHuman Team 2001-2019
+**Copyright(c):**      MakeHuman Team 2001-2020
 
 **Licensing:**         AGPL3
 
@@ -46,6 +46,7 @@ if sys.platform.startswith('win'):
 import log
 import getpath
 from mhversion import MHVersion
+from core import G
 
 class DependencyError(Exception):
     def __init__(self, value):
@@ -126,7 +127,14 @@ class DebugDump(object):
         self.write("PLATFORM.UNAME.RELEASE: %s", platform.uname()[2])
 
         if sys.platform.startswith('linux'):
-            self.write("PLATFORM.LINUX_DISTRIBUTION: %s", ' '.join(platform.linux_distribution()))
+            try:
+                self.write("PLATFORM.LINUX_DISTRIBUTION: %s", ' '.join(platform.linux_distribution()))
+            except AttributeError:
+                try:
+                    import distro
+                    self.write("PLATFORM.LINUX_DISTRIBUTION: %s", ' '.join(distro.linux_distribution()))
+                except ImportError:
+                    self.write("PLATFORM.LINUX_DISTRIBUTION: %s", 'Unknown')
             
         if sys.platform.startswith('darwin'):
             self.write("PLATFORM.MAC_VER: %s", platform.mac_ver()[0])
@@ -146,6 +154,19 @@ class DebugDump(object):
         import OpenGL
         self.open()
         self.write("PYOPENGL.VERSION: %s", OpenGL.__version__)
+        
+        noshaders = "not set"
+        if G.args.get('noshaders', False):
+            noshaders = "set via command line"
+        if G.preStartupSettings["noShaders"]:
+            noshaders = "set via setting"
+        self.write("NOSHADERS: %s", noshaders)
+        
+        nosamplebuffers = "not set"
+        if G.preStartupSettings["noSampleBuffers"]:
+            nosamplebuffers = "set via setting"
+        self.write("NOSAMPLEBUFFERS: %s", nosamplebuffers)
+
         self.close()
 
     def appendQt(self):

@@ -10,7 +10,7 @@
 
 **Authors:**           Glynn Clements
 
-**Copyright(c):**      MakeHuman Team 2001-2019
+**Copyright(c):**      MakeHuman Team 2001-2020
 
 **Licensing:**         AGPL3
 
@@ -52,7 +52,7 @@ class ExporterUV(Exporter):
     def export(self, human, filename):
         import projection
 
-        dstImg = projection.mapUV()
+        dstImg = projection.mapUV(human.mesh)
         filepath = filename("png")
         dstImg.save(filepath)
 

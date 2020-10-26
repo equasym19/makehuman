@@ -10,7 +10,7 @@
 
 **Authors:**           Marc Flerackers
 
-**Copyright(c):**      MakeHuman Team 2001-2019
+**Copyright(c):**      MakeHuman Team 2001-2020
 
 **Licensing:**         AGPL3
 
@@ -356,13 +356,13 @@ class Timeline:
         self.actions.append(action)
 
     def start(self):
-        reference = time.time()
+        reference = time.perf_counter()
         t = 0
         while t < self.length:
             a = t / self.length
             for action in self.actions:
                 action.set(a)
-            t = time.time() - reference
+            t = time.perf_counter() - reference
         for action in self.actions:
             action.set(1.0)
 
