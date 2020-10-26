@@ -64,14 +64,13 @@ class MeasureTaskView(guimodifier.ModifierTaskView):
         self.chest = self.statsBox.addWidget(gui.TextView('Chest: '))
         self.waist = self.statsBox.addWidget(gui.TextView('Waist: '))
         self.hips = self.statsBox.addWidget(gui.TextView('Hips: '))
+        #self.bra = self.statsBox.addWidget(gui.TextView('Bra: '))
 
-        '''
         self.braBox = self.addRightWidget(gui.GroupBox('Brassiere size'))
         self.eu = self.braBox.addWidget(gui.TextView('EU: '))
         self.jp = self.braBox.addWidget(gui.TextView('JP: '))
         self.us = self.braBox.addWidget(gui.TextView('US: '))
         self.uk = self.braBox.addWidget(gui.TextView('UK: '))
-        '''
 
     def addSlider(self, sliderCategory, slider, enabledCondition=None):
         super(MeasureTaskView, self).addSlider(sliderCategory, slider, enabledCondition)
@@ -185,7 +184,7 @@ class MeasureTaskView(guimodifier.ModifierTaskView):
     def syncGUIStats(self):
         self.syncStatistics()
         self.showMacroStatus()
-        #self.syncBraSizes()
+        self.syncBraSizes()
 
     def syncStatistics(self):
 
